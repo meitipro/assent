@@ -1,0 +1,22 @@
+# gltest configuration
+#
+# The contract is a single standalone GenVM file in contracts/.
+# There is no build step: it is deployed exactly as written.
+#
+# `studionet` must appear as a KEY here, not only as the value of `default`.
+# gltest's validate_raw_user_config refuses a default that names a network it
+# cannot find, and the only name exempt from that is `localnet`:
+#
+#     ValueError: default network studionet not found in networks
+#
+# It is raised while loading the config, before collection, so every test in
+# the repository errors at once and the message says nothing about contracts.
+# An empty mapping is enough: the url and accounts come from gltest's own
+# defaults and from .env.
+networks:
+  default: studionet
+  studionet: {}
+
+paths:
+  contracts: contracts
+  artifacts: artifacts

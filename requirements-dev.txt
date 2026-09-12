@@ -1,0 +1,7 @@
+# Unit and end-to-end tests need only this:
+pytest>=8.0
+
+# Studio integration tests additionally need the GenLayer test runner.
+genlayer-test
+
+# genvm-linter    needed by scripts/verify_deployment.py, which lints the deployed bytes

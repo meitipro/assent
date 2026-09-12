@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#12141A"/><stop offset="1" stop-color="#0A0B0E"/></linearGradient></defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1280" height="6" fill="#C567D4"/>
+  <g transform="translate(96,96) scale(1.4)">
+  <rect width="100" height="100" rx="18" fill="#0C0D10"/>
+  <line x1="50" y1="20" x2="50" y2="80" stroke="#E8E6E1" stroke-width="4"
+        stroke-linecap="round" opacity="0.85"/>
+  <path d="M40 28 H28 V72 H40" fill="none" stroke="#C567D4"
+        stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M60 28 H72 V72 H60" fill="none" stroke="#C567D4"
+        stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+  <text x="96" y="352" font-family="Inter, Helvetica Neue, Arial, sans-serif"
+        font-size="76" font-weight="700" letter-spacing="-2.6" fill="#E8E6E1">assent</text>
+  <text x="96" y="410" font-family="Inter, Helvetica Neue, Arial, sans-serif"
+        font-size="27" fill="#9AA0A8">An agreement forms only when the acceptance matches the offer.</text>
+  <text x="96" y="452" font-family="Inter, Helvetica Neue, Arial, sans-serif"
+        font-size="27" fill="#9AA0A8">A reply that changes a term is a counter-offer, not a yes.</text>
+  <line x1="96" y1="520" x2="1184" y2="520" stroke="#232830" stroke-width="1"/>
+  <text x="96" y="562" font-family="ui-monospace, Menlo, monospace" font-size="21"
+        fill="#C567D4">A GenLayer Intelligent Contract primitive</text>
+  <text x="1184" y="562" text-anchor="end" font-family="ui-monospace, Menlo, monospace"
+        font-size="21" fill="#5B626B">InferNode</text>
+</svg>
