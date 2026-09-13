@@ -56,12 +56,14 @@ one standalone primitive.
 ## On chain
 
 Deployed and exercised on studionet at
-[`{address}`](https://explorer-studio.genlayer.com/address/{address}).
+[`0x926a4819dFd01F39959b2FCfbd02eBA8FbB3045C`](https://explorer-studio.genlayer.com/address/0x926a4819dFd01F39959b2FCfbd02eBA8FbB3045C).
+Eleven transactions, every one `FINALIZED`. Every value below was read back from
+the chain with view calls afterwards, not copied from a local run, and it is
+exactly what `tests/test_runbook.py` asserts for the same run.
 
-The values below are what the run in [DEPLOY.md](DEPLOY.md) is expected to
-produce - `tests/test_runbook.py` replays that run and asserts each of them - and
-every one is to be **read back from the chain with view calls afterwards** and
-replaced with what the chain actually says before this file is submitted.
+Two of the eleven are the mailbox rule refusing, while acceptance 0 was still
+pending: a counter-offer from the seller and a second acceptance from the buyer.
+Both were refused cleanly and nothing was written.
 
 | # | Transaction | Result |
 |---|---|---|
@@ -78,8 +80,12 @@ replaced with what the chain actually says before this file is submitted.
 ### Reproducing the check
 
 ```bash
-python scripts/verify_deployment.py {address}
+python scripts/verify_deployment.py 0x926a4819dFd01F39959b2FCfbd02eBA8FbB3045C
 ```
+
+Reads the source out of the deploy transaction, compares it with
+`contracts/assent.py`, and runs `genvm-lint lint` on those bytes. It reports the
+deployed source as identical.
 
 ---
 
@@ -103,7 +109,7 @@ Contract: https://github.com/meitipro/assent/blob/main/contracts/assent.py
 Spec:     https://github.com/meitipro/assent/blob/main/CONTRACTS.md
 Decisions https://github.com/meitipro/assent/blob/main/DECISIONS.md
 Tests:    https://github.com/meitipro/assent/tree/main/tests
-Explorer: https://explorer-studio.genlayer.com/address/{address}
+Explorer: https://explorer-studio.genlayer.com/address/0x926a4819dFd01F39959b2FCfbd02eBA8FbB3045C
 ```
 
 ---

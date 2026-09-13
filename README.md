@@ -10,13 +10,64 @@ Nobody decides "we have a deal". The contract compares.
 
 - **Contract:** [`contracts/assent.py`](contracts/assent.py)
 - **Tests:** `pip install pytest && pytest tests/ -q` - nothing else to install
-- **Deployed:** [`{address}`](https://explorer-studio.genlayer.com/address/{address}) on studionet
+- **Deployed:** [`0x926a4819dFd01F39959b2FCfbd02eBA8FbB3045C`](https://explorer-studio.genlayer.com/address/0x926a4819dFd01F39959b2FCfbd02eBA8FbB3045C) on studionet
 - **Deploying it yourself:** [DEPLOY.md](DEPLOY.md) - the contract, the demo, and the check to run before submitting
 - **Verify a deployment:** `python scripts/verify_deployment.py 0x...` - compares the
   on-chain source with this file and lints it
 - **Specification:** [CONTRACTS.md](CONTRACTS.md)
 - **Decisions:** [DECISIONS.md](DECISIONS.md)
 - **License:** MIT. Copy the agreement rule; that is what it is for.
+
+---
+
+## It is live, and every outcome is on chain
+
+Two parties, one deal on a frozen catalogue of three named terms and the
+residual row. Every value below was read back from the chain with view calls,
+not copied from a local run.
+
+**The conditional acceptance** - "We accept, provided delivery is brought
+forward to 1 October."
+
+```
+same | changed | same | same  ->  countered, changed 0|1|0|0
+```
+
+Read casually it is a yes. The contract refused to call it one: offer 0 was
+terminated, and the reply now stands as offer 1, kind `conditional`, by the
+buyer to the seller. The roles swapped. The leader's reason, stored and outside
+consensus: "Only delivery date is altered from 15 October to 1 October; price,
+warranty, and other terms are unchanged."
+
+**The mailbox rule, in public.** While that acceptance was still waiting to be
+judged, the seller tried to counter and the buyer tried to accept again. Both
+were refused - "the mailbox rule: an acceptance is posted, so the offer cannot
+be countered until it is judged" and "an acceptance is already posted and awaits
+judgment" - and nothing was written.
+
+**The agreement** - the seller countered with the whole offer restated at 1
+October (offer 2, answering offer 1), and the buyer replied "We accept your offer
+in full, as written."
+
+```
+same | same | same | same  ->  formed, changed 0|0|0|0
+```
+
+`agreement(0)`:
+
+```json
+{"agreed": true,
+ "offer_text": "We offer 40 ergonomic office chairs at 180 EUR each, delivered to your Rotterdam office by 1 October, with a two year warranty.",
+ "acceptance_text": "We accept your offer in full, as written.",
+ "offeror": "0x3e1D268c8B1Ba7d042968ab713467C5631831513",
+ "acceptor": "0x86277F71efeaF7AbA8c51FF3A5BF15D76D95F213"}
+```
+
+A second deal, desk lamps, was withdrawn by its offeror before anybody accepted
+it: `status(1)` is `withdrawn`.
+
+Eleven transactions, every one `FINALIZED`: the nine the demo needs and the two
+refusals above.
 
 ---
 
